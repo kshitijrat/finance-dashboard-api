@@ -3,12 +3,14 @@ package com.finance.dashboard.repository;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.finance.dashboard.enums.TransactionType;
 import com.finance.dashboard.model.Transaction;
 
-public interface TransactionRepository extends MongoRepository<Transaction, String> {
+@Repositoryp
+public interface TransactionRepository extends JpaRepository<Transaction, String> {
 
     List<Transaction> findByType(TransactionType type);
 

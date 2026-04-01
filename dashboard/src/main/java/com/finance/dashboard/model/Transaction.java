@@ -2,14 +2,20 @@ package com.finance.dashboard.model;
 
 import java.time.LocalDate;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import com.finance.dashboard.enums.TransactionType;
 
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Document(collection = "transactions")
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,10 +23,12 @@ import lombok.*;
 public class Transaction {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private Double amount;
 
+    @Enumerated(EnumType.STRING)
     private TransactionType type;
 
     private String category;
@@ -29,5 +37,5 @@ public class Transaction {
 
     private String notes;
 
-    private String createdBy; // userId
+    private Long createdBy;
 }
