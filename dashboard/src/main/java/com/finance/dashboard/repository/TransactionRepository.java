@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.finance.dashboard.enums.TransactionType;
 import com.finance.dashboard.model.Transaction;
 
-@Repositoryp
+@Repository
 public interface TransactionRepository extends JpaRepository<Transaction, String> {
 
     List<Transaction> findByType(TransactionType type);
