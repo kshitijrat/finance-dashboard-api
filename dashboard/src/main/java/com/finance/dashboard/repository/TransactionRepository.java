@@ -10,7 +10,7 @@ import com.finance.dashboard.enums.TransactionType;
 import com.finance.dashboard.model.Transaction;
 
 @Repository
-public interface TransactionRepository extends JpaRepository<Transaction, String> {
+public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
     List<Transaction> findByType(TransactionType type);
 

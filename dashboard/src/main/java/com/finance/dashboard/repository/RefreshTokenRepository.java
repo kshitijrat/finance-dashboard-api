@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.finance.dashboard.model.RefreshToken;
 
 @Repository
-public interface RefreshTokenRepository extends JpaRepository<RefreshToken, String> {
+public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Long> {
     Optional<RefreshToken> findByToken(String token);
 }
