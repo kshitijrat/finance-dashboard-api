@@ -1,5 +1,6 @@
 package com.finance.dashboard.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
+    @Autowired
+    private  UserRepository userRepository;
+
+    @Autowired
+    private  PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private  JwtService jwtService;
 
     public AuthResponse register(RegisterRequest request) {
 

@@ -21,6 +21,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public AuthResponse register(@RequestBody RegisterRequest request) {
+        System.out.println("register hit...");
         return authService.register(request);
     }
 
