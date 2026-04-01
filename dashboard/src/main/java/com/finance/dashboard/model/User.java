@@ -1,16 +1,20 @@
 package com.finance.dashboard.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import com.finance.dashboard.enums.Role;
 
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-
-
-@Document(collection = "users")
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,15 +22,17 @@ import lombok.*;
 public class User {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
 
-    @Indexed(unique = true)
+    @Column(unique = true)
     private String email;
 
     private String password;
 
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     private boolean isActive;
