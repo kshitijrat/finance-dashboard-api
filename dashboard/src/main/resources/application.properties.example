@@ -1,0 +1,13 @@
+# Server
+server.port=8080
+
+# MongoDB
+spring.data.mongodb.uri=mongodb://localhost:27017/YOUR_DB_NAME
+
+# JWT
+jwt.secret=YOUR_JWT_SECRET_KEY_HERE_MIN_256_BITS
+jwt.expiration=86400000
+jwt.refresh-expiration=604800000
+
+# App
+spring.application.name=finance-dashboard
