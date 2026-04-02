@@ -1,6 +1,6 @@
-# Finance Dashboard (Backend)
+# Personal Finance Dashboard (Backend)
 
-This project is designed to help you manage transactions, track your income and expenses, and keep your financial data secure. It uses a Role-Based system to control who can see or change the data.
+Welcome to the Personal Finance Dashboard backend! This project is designed to help you manage transactions, track your income and expenses, and keep your financial data secure. It uses a Role-Based system to control who can see or change the data.
 
 ## Role-Based Access (Who can do what?)
 
@@ -21,33 +21,53 @@ I have created three levels of access to keep the data safe:
 ## Tech Stack
 
 - **Java 17** & **Spring Boot 3.3.4**
-- **Spring Security** (For Access Control)
-- **Oracle SQL** (Database for storage)
-- **Hibernate/JPA** (To handle data)
-- **Maven** (To manage project tools)
+- **Database**: MySQL 8.0
+- **Security**: Spring Security + JWT (Tokens)
+- **Documentation**: SpringDoc OpenAPI (Swagger)
 
 ## How to Setup Locally
 
 ### 1. Requirements
 - Install **Java 17** or higher.
 - Install **Maven**.
-- Have an **Oracle Database** ready.
+- Install **MySQL Server** and create a database named `finance_db`.
 
 ### 2. Configuration
-Open the file `src/main/resources/application.properties` and update these lines with your database details:
-```properties
-spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
-spring.datasource.username=your_db_username
-spring.datasource.password=your_db_password
+Create or update your `src/main/resources/application.properties` with the following configuration:
+
+```bash
+server.port=8080
+
+# Database Setup
+spring.datasource.url=jdbc:mysql://localhost:3306/finance_db
+spring.datasource.username=username
+spring.datasource.password=password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true 
+spring.jpa.properties.hibernate.use_sql_comments=true
+
+# JWT Settings
+jwt.secret=404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+jwt.expiration=86400000
+jwt.refresh-expiration=604800000
+
+# Swagger Documentation
+springdoc.api-docs.path=/v3/api-docs
+springdoc.swagger-ui.path=/swagger-ui.html
+springdoc.swagger-ui.operationsSorter=alpha
 ```
+**Note:** Just change the `spring.datasource.username` and `spring.datasource.password` to match your local MySQL credentials.
 
 ### 3. Build and Run
 1. Open your terminal in the project folder.
-2. Run this command to download everything and build the app:
+2. Build the app:
    ```bash
    mvn clean install
    ```
-3. After it finishes, run the main file `DashboardBackendApplication.java` from your IDE or use:
+3. Run the application:
    ```bash
    mvn spring-boot:run
    ```
@@ -57,7 +77,7 @@ spring.datasource.password=your_db_password
 I have integrated **Swagger** so you don't need external tools like Postman to test the app.
 1. Run the application.
 2. Open your browser and go to:
-   `http://localhost:8080/swagger-ui/index.html`
+   `http://localhost:8080/swagger-ui.html`
 
 ## Important API Paths
 
@@ -65,5 +85,5 @@ I have integrated **Swagger** so you don't need external tools like Postman to t
 | :--- | :--- | :--- |
 | **Register/Login** | `/api/auth/**` | Public (Everyone) |
 | **Main Summary** | `/api/dashboard/summary` | Admin, Analyst, Viewer |
-| **Detailed Trends**| `/api/dashboard/trends` | Admin, Analyst |
+| **Detailed Trends**| `/api/dashboard/weekly-trends` | Admin, Analyst |
 | **Manage Data** | `/api/transactions` | Admin Only |
