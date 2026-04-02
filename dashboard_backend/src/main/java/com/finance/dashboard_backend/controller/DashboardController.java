@@ -19,17 +19,20 @@ public class DashboardController {
     private final DashboardService dashboardService;
     private final TransactionRepository transactionRepository;
 
-    // Admin and Analyst can see insights, Viewer can also see general summary
     @GetMapping("/summary")
     @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST', 'VIEWER')")
     public ResponseEntity<DashboardSummaryResponse> getSummary() {
         return ResponseEntity.ok(dashboardService.getSummary());
     }
+
     @GetMapping("/recent-activity")
+    @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
     public ResponseEntity<List<Transaction>> getRecent() {
         return ResponseEntity.ok(transactionRepository.findTop10ByOrderByTransDateDesc());
     }
+
     @GetMapping("/weekly-trends")
+    @PreAuthorize("hasAnyRole('ADMIN', 'ANALYST')")
     public ResponseEntity<List<Map<String, Object>>> getTrends() {
         return ResponseEntity.ok(transactionRepository.getWeeklyTrends());
     }
