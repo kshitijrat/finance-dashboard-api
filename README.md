@@ -1,12 +1,12 @@
 # Personal Finance Dashboard (Backend)
 
-Welcome to the Personal Finance Dashboard backend! This project is designed to help you manage transactions, track your income and expenses, and keep your financial data secure. It uses a Role-Based system to control who can see or change the data.
+Finance Dashboard backend! This project is designed to help you manage transactions, track your income and expenses, and keep your financial data secure. It uses a Role-Based system to control who can see or change the data.
 
 ## Role-Based Access (Who can do what?)
 
 I have created three levels of access to keep the data safe:
 
-- **ADMIN**: The Super User. Can do everything—create, edit, delete transactions, and see all user accounts.
+- **ADMIN**: The Super User. Can do everything-create, edit, delete transactions, and see all user accounts.
 - **ANALYST**: The Specialist. Can view all transaction records and access deep insights like "Recent Activity" and "Weekly Trends." However, they cannot add or delete any records.
 - **VIEWER**: The Basic User. Can only see the main Dashboard Summary (Total Income, Expenses, and Balance). They cannot see individual transaction lists or modify any data.
 
